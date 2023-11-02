@@ -47,6 +47,7 @@ body {
   outline: 0.3rem solid var(--caribbean-current);
   border-radius: 1.5rem;
   height: min-content;
+  min-height: 28rem;
   width: min(60rem, 80%);
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   gap: 1rem;

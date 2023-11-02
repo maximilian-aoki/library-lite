@@ -17,29 +17,29 @@
   <div class="add-book container"><button class="add-button">Add Book</button></div>
 
   <dialog class="add-modal">
-    <h2>Add a Book!</h2>
-    <form method="dialog">
+    <h2 class="edit-method">Add a Book!</h2>
+    <form method="dialog" class="add-form">
       <div>
         <label for="title">Title:</label>
-        <input type="text" name="title" id="title" required>
+        <input type="text" name="title" id="title" placeholder="The Chamber of Secrets" required>
       </div>
       <div>
         <label for="author">Author:</label>
-        <input type="text" name="author" id="author" required>
+        <input type="text" name="author" id="author" placeholder="J.K. Rowling" required>
       </div>
       <div>
         <label for="pages"># Pages:</label>
-        <input type="tel" name="pages" id="pages" required>
+        <input type="number" name="pages" id="pages" min="1" placeholder="250" required>
       </div>
       <div>
         <label for="rating">Rating (out of 10):</label>
-        <input type="number" name="rating" id="rating" min="0" max="10" step="0.1">
+        <input type="number" name="rating" id="rating" min="0" max="10" step="0.1" placeholder="8">
       </div>
       <div>
         <label for="review">Review (100 chars max):</label>
-        <textarea name="review" id="review" cols="30" rows="10"></textarea>
+        <textarea name="review" id="review" cols="30" rows="10" placeholder="Pretty sweet ngl"></textarea>
       </div>
-      <button type="submit">Add Book</button>
+      <button type="submit" class="add">Add Book</button>
       <button type="button" class="close-modal">Cancel</button>
     </form>
   </dialog>
@@ -50,7 +50,7 @@
         <h2>THE SORCERER'S STONE</h2>
         <h3>by Harriet Truman<hr></h3>
         <div>
-          <label for="checkbox">finished?</label>
+          <p>finished?</p>
           <p># pages:</p>
           <p>rating:</p>
         </div>
