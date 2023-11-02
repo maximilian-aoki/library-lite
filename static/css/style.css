@@ -60,6 +60,7 @@ body {
   color: var(--champagne-pink);
   border: 0.3rem solid var(--caribbean-current);
   border-radius: 1.5rem;
+  box-shadow: 3px 7px 15px 5px rgba(0,0,0,0.77);
   display: grid;
   justify-items: center;
   align-items: center;
@@ -123,15 +124,48 @@ div.book > div:nth-of-type(4) {
 }
 
 /* MODAL DIALOG */
+dialog {
+  border: 0.4rem solid var(--caribbean-current);
+  border-radius: 1rem;
+  padding: 2rem;
+  color: var(--dark-slate-gray-variation);
+}
 dialog::backdrop {
   backdrop-filter: blur(3px);
   background-color: hsla(0, 0%, 0%, 0.2);
+}
+form {
+  position: relative;
+}
+form > div {
+  display: grid;
+}
+dialog label {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+dialog input {
+  margin-bottom: 0.5rem;
+  height: 2rem;
+  border: 1px solid grey;
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+}
+textarea {
+  resize: none;
+  padding: 0.3rem;
+  border-radius: 0.2rem;
 }
 
 /* TEXT STYLES */
 h1 {
   color: var(--champagne-pink);
   font-size: 3.8rem;
+}
+dialog h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 
 /* BUTTON STYLES */
@@ -154,11 +188,24 @@ button {
   margin: 0 0.5rem;
 }
 .book button:last-of-type {
-  background-color: var(--burnt-umber);
+  background-color: var(--persian-red);
+}
+dialog button {
+  width: 100%;
+  height: 2.5rem;
+  margin-top: 1rem;
+  box-shadow: 3px 3px 15px -1px rgba(0,0,0,0.86);
+}
+dialog button:last-of-type {
+  background-color: var(--persian-red) !important;
 }
 button:hover {
   color: var(--dark-slate-gray-variation);
   background-color: var(--champagne-pink) !important;
+}
+dialog button:hover {
+  color: white !important;
+  background-color: var(--dark-slate-gray-variation) !important;
 }
 input[type="checkbox"] {
   width: 16px;

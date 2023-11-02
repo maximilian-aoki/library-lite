@@ -1,19 +1,24 @@
 
 const addButton = document.querySelector('.add-button');
-const modal = document.querySelector('.modal');
+const addModal = document.querySelector('.add-modal');
+const closeModal = document.querySelector('.close-modal');
 
 addButton.addEventListener('click', () => {
-  modal.showModal();
+  addModal.showModal();
 });
 
-modal.addEventListener("click", (e) => {
-  const modalDimensions = modal.getBoundingClientRect()
+closeModal.addEventListener('click', () => {
+  addModal.close();
+})
+
+addModal.addEventListener("click", (e) => {
+  const modalDimensions = addModal.getBoundingClientRect()
   if (
     e.clientX < modalDimensions.left ||
     e.clientX > modalDimensions.right ||
     e.clientY < modalDimensions.top ||
     e.clientY > modalDimensions.bottom
   ) {
-    modal.close()
+    addModal.close();
   }
 })
