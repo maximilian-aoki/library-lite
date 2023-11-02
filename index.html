@@ -8,7 +8,36 @@
   <link rel="stylesheet" href="./static/css/style.css">
   <script src="./main.js" defer></script>
 </head>
-<body>
-  <h1>Hello World!</h1>
+<body class="container-grid">
+  <div class="header">
+    <h1>Maxy's Library Lite</h1>
+  </div>
+  <div class="add-book container"><button>Add Book</button></div>
+  <div class="content container-grid">
+    <div class="library-container container-grid">
+      <div class="book">
+        <h2>THE SORCERER'S STONE</h2>
+        <h3>by Harriet Truman<hr></h3>
+        <div>
+          <label for="checkbox">finished?</label>
+          <p># pages:</p>
+          <p>rating:</p>
+        </div>
+        <div>
+          <input type="checkbox" name="checkbox" id="checkbox">
+          <p>293</p>
+          <p>8/10</p>
+        </div>
+        <div>
+          <h4>Review:</h4>
+          <p>"This book was very great - I would recommend it to anybody! As for length of my commentary this is a lot"</p>
+        </div>
+        <div>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

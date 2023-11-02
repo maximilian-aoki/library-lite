@@ -1,12 +1,165 @@
+:root {
+  --dark-slate-gray: #283d3bff;
+  --dark-slate-gray-variation: rgb(40, 51, 50);
+  --caribbean-current: #197278ff;
+  --carribean-current-variation: rgb(55, 177, 185);
+  --champagne-pink: #edddd4ff;
+  --persian-red: #c44536ff;
+  --burnt-umber: #772e25ff;
+}
 html {
   box-sizing: border-box;
   font-size: 16px;
+  background-color: var(--dark-slate-gray);
 }
 *,
 *::before,
 *::after {
   box-sizing: inherit;
 }
+
+/* DEBUGGING */
+* {
+  /* outline: 1px solid teal; */
+}
+
+/* LAYOUT */
 body {
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   min-height: 100vh;
+  grid-template-rows: 7rem 5rem auto;
+}
+.container-grid {
+  display: grid;
+}
+.header,
+.add-book {
+  align-self: end;
+  justify-self: center;
+}
+.content {
+  justify-items: center;
+}
+.library-container {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: var(--champagne-pink);
+  outline: 0.3rem solid var(--caribbean-current);
+  border-radius: 1.5rem;
+  height: min-content;
+  width: min(60rem, 80%);
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+}
+
+/* EDITABLE LIBRARY INSTANCE */
+.library-container > div.book {
+  height: 25rem;
+  min-width: 15rem;
+  background-color: var(--dark-slate-gray-variation);
+  color: var(--champagne-pink);
+  border: 0.3rem solid var(--caribbean-current);
+  border-radius: 1.5rem;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template: 2fr 1fr 3fr 5fr 2fr / 1fr 1fr;
+  grid-template-areas:
+    "title   title"
+    "author  author"
+    "labels  info"
+    "review  review"
+    "buttons buttons"
+  ;
+}
+div.book > h2 {
+  grid-area: title;
+  text-align: center;
+  margin: 0.5rem 1rem 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+div.book > h3 {
+  grid-area: author;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+div.book > div:nth-of-type(1) {
+  grid-area: labels;
+  display: grid;
+  gap: 0.6rem;
+  font-style: italic;
+  text-align: right;
+  justify-self: end;
+  margin-right: 0.5rem;
+}
+div.book > div:nth-of-type(2) {
+  grid-area: info;
+  display: grid;
+  gap: 0.6rem;
+  font-weight: 500;
+  justify-self: start;
+  margin-left: 0.5rem;
+}
+div.book > div:nth-of-type(3) {
+  grid-area: review;
+  align-self: start;
+  text-align: center;
+}
+div.book > div:nth-of-type(3) > h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+div.book > div:nth-of-type(3) > p {
+  margin: 0 1rem;
+  font-style: italic;
+  font-weight: 300;
+}
+div.book > div:nth-of-type(4) {
+  grid-area: buttons;
+}
+
+/* TEXT STYLES */
+h1 {
+  color: var(--champagne-pink);
+  font-size: 3.8rem;
+}
+
+/* BUTTON STYLES */
+button {
+  cursor: pointer;
+  font-weight: bold;
+  border-style: none;
+  border-radius: 0.5rem;
+  background-color: #1397e9;
+  color: white;
+}
+.add-book > button {
+  width: 12rem;
+  height: 3rem;
+  font-size: 1.2rem;
+}
+.book button {
+  width: 6rem;
+  height: 2.5rem;
+  margin: 0 0.5rem;
+}
+.book button:last-of-type {
+  background-color: var(--burnt-umber);
+}
+button:hover {
+  color: var(--dark-slate-gray-variation);
+  background-color: var(--champagne-pink) !important;
+}
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--champagne-pink);
+  cursor: pointer;
+}
+input[type="checkbox"]:checked {
+  background-color: var(--carribean-current-variation);
 }
