@@ -186,7 +186,7 @@ button {
 .book button {
   width: 6rem;
   height: 2.5rem;
-  margin: 0 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .book button:last-of-type {
   background-color: var(--persian-red);

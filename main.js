@@ -14,7 +14,6 @@ const libraryDOM = document.querySelector('.library-container');
 
 // SET UP LIBRARY
 const myLibrary = [];
-const libIndex = 0;
 
 function Book(title, author, pages, rating, review) {
   this.title = title;
@@ -22,6 +21,7 @@ function Book(title, author, pages, rating, review) {
   this.pages = pages;
   this.rating = rating;
   this.review = review;
+  this.hasRead = false;
 }
 
 // ADD-BOOK BUTTON EVENT LISTENER
@@ -49,7 +49,11 @@ addModal.addEventListener("click", (e) => {
 // ADD-BOOK LOGIC
 addForm.addEventListener('submit', () => {
   newBook = createBook();
-  addToDOM(newBook);
+  myLibrary.push(newBook);
+
+  removeDOM();
+  refreshDOM(myLibrary);
+
   addForm.reset();
 });
 
@@ -57,7 +61,7 @@ function createBook() {
   title = titleDOM.value.trim().toUpperCase();
   author = authorDOM.value.trim();
   pages = pagesDOM.value;
-  review = `"${reviewDOM.value.trim()}"`;
+  review = `${reviewDOM.value.trim()}`;
 
   if (ratingDOM.value.trim()) {
     rating = `${ratingDOM.value.trim()}/10`;
@@ -66,48 +70,64 @@ function createBook() {
   }
 
   let newBook = new Book(title, author, pages, rating, review);
-
-  myLibrary.push(newBook);
   return newBook;
 }
 
-function addToDOM(bookInstance) {
-  const newBookDOM = document.createElement('div');
-  newBookDOM.classList.add('book');
-  
-  newBookDOM.innerHTML = 
-  `
-  <h2>${bookInstance.title}</h2>
-  <h3>by ${bookInstance.author}<hr></h3>
-  <div>
-    <p>finished?</p>
-    <p># pages:</p>
-    <p>rating:</p>
-  </div>
-  <div>
-    <input type="checkbox" name="checkbox">
-    <p>${bookInstance.pages}</p>
-    <p>${bookInstance.rating}</p>
-  </div>
-  <div>
-    <h4>Review:</h4>
-    <p>"${bookInstance.review}"</p>
-  </div>
-  <div>
-    <button>Edit</button>
-    <button>Delete</button>
-  </div>
-  `;
+function removeDOM() {
+  let allBooksNodelist = document.querySelectorAll('.book');
+  let allBooksArr = Array.from(allBooksNodelist);
 
-  libraryDOM.appendChild(newBookDOM);
+  for (let book of allBooksArr) {
+    libraryDOM.removeChild(book);
+  }
+}
+
+function refreshDOM(arr) {
+  for (let book of arr) {
+    const newBookDOM = document.createElement('div');
+    newBookDOM.classList.add('book');
+
+    newBookDOM.setAttribute('data-index', `${arr.indexOf(book)}`);
+    
+    newBookDOM.innerHTML = 
+    `
+    <h2>${book.title}</h2>
+    <h3>by ${book.author}<hr></h3>
+    <div>
+      <p>finished?</p>
+      <p># pages:</p>
+      <p>rating:</p>
+    </div>
+    <div>
+      <input type="checkbox" name="checkbox">
+      <p>${book.pages}</p>
+      <p>${book.rating}</p>
+    </div>
+    <div>
+      <h4>Review:</h4>
+      <p>"${book.review}"</p>
+    </div>
+    <div>
+      <button>Delete</button>
+    </div>
+    `;
+
+    libraryDOM.appendChild(newBookDOM);
+  }
 }
 
 // DELETE BOOK LOGIC
 libraryDOM.addEventListener('click', (e) => {
   if (e.target.textContent == "Delete") {
-    selectedElement = e.target.parentElement.parentElement;
-    libraryDOM.removeChild(selectedElement);
+    let dataIndex = getDataIndex(e);
+    myLibrary.splice(dataIndex, 1);
+
+    removeDOM();
+    refreshDOM(myLibrary);
   }
-  console.log(e.target.textContent);
-  console.log(e.target.parentElement.parentElement);
 });
+
+function getDataIndex(e) {
+  let selectedBook = e.target.parentElement.parentElement;
+  return Number(selectedBook.getAttribute('data-index'));
+}
